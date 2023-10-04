@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Routes } from "react-router-dom";
 
-import "./App.css";
-import Navbar from "./components/navbar/Navbar";
+import "./App.scss";
 import Home from "./pages/home/Home";
+import Navbar from "./components/navbar/Navbar";
+import Menu from "./components/menu/Menu";
+import Footer from "./components/footer/Footer";
 
 const queryClient = new QueryClient();
 
@@ -11,11 +13,13 @@ const App = () => (
   <div className="app">
     <QueryClientProvider client={queryClient}>
       <Navbar className="navbar" />
+      <Menu />
       <div className="body">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
+      <Footer />
     </QueryClientProvider>
   </div>
 );
