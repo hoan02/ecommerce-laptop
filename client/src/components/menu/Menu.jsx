@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
@@ -22,19 +23,27 @@ const Menu = () => {
         <div className="items">
           <div className="item" onMouseEnter={handleMouseEnter}>
             <LaptopMacIcon />
-            <span>Danh mục laptop</span>
+            <NavLink className="link" to="/">
+              Danh mục laptop
+            </NavLink>
           </div>
           <div className="item">
             <CardGiftcardIcon />
-            <span>Khuyến mãi</span>
+            <NavLink className="link" to="/khuyen-mai">
+              Khuyến mãi
+            </NavLink>
           </div>
           <div className="item">
             <ConstructionIcon />
-            <span>Bảo hành - hậu mãi</span>
+            <NavLink className="link" to="/bao-hanh-hau-mai">
+              Bảo hành - hậu mãi
+            </NavLink>
           </div>
           <div className="item">
             <PaymentsIcon />
-            <span>Trả góp</span>
+            <NavLink className="link" to="/tra-gop">
+              Trả góp
+            </NavLink>
           </div>
         </div>
       </div>

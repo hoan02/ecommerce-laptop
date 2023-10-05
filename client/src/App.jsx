@@ -7,6 +7,9 @@ import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
 import Footer from "./components/footer/Footer";
 import Description from "./pages/description/Description";
+import Installment from "./pages/installment/Installment";
+import Warranty from "./pages/warranty/Warranty";
+import Promotion from "./pages/promotion/Promotion";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +21,10 @@ const App = () => (
       <div className="body">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/desc/" element={<Description />} />
+          <Route path="/desc" element={<Description />} />
+          <Route path="/khuyen-mai" element={<Promotion />} />
+          <Route path="/bao-hanh-hau-mai" element={<Warranty />} />
+          <Route path="/tra-gop" element={<Installment />} />
         </Routes>
       </div>
       <Footer className="footer" />

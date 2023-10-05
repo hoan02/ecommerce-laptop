@@ -1,0 +1,61 @@
+// File: Warranty.scss
+
+.warranty {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .info {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .details {
+    h2 {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+  }
+
+  .contact-info {
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+
+    h2 {
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      font-size: 16px;
+      margin-bottom: 10px;
+
+      &:before {
+        content: "\2022";
+        margin-right: 10px;
+        color: #333;
+      }
+    }
+  }
+}
