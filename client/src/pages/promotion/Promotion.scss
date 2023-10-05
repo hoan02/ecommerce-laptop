@@ -14,34 +14,34 @@
       font-size: 12pt;
     }
   }
-}
 
-.promotion-text-item {
-  margin: 10px 0;
-}
-
-.promotion-image {
   img {
-    width: 100%;
-  }
-}
-
-.promotion-images {
-  img {
-    width: 50%;
+    margin: 10px 0;
   }
 
-  .float-left {
-    float: left;
+  .promotion-text-item {
+    margin: 10px 0;
   }
-}
 
-.bot-img {
-  img {
-    width: 100%;
+  .promotion-image {
+    img {
+      width: 100%;
+    }
   }
-}
 
-img {
-  margin: 10px 0;
+  .promotion-images {
+    img {
+      width: 50%;
+    }
+
+    .float-left {
+      float: left;
+    }
+  }
+
+  .bot-img {
+    img {
+      width: 100%;
+    }
+  }
 }

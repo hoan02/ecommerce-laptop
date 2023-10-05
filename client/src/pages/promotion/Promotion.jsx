@@ -28,7 +28,7 @@ const Promotion = () => {
 
       <div className="promotion-details">
         <div className="promotion-text">
-          ❤️ Hòa chung không khí đón chào năm học mới 2023, LaptopAZ triển khai
+          ❤️ Hòa chung không khí đón chào năm học mới 2023, LaptopUTC triển khai
           chương trình {'"'}BACK TO SCHOOL - NHẬN QUÀ TỚI 5 TRIỆU ĐỒNG️
           {'"'} đặc biệt dành tặng cho tất cả các khách hàng.
         </div>
@@ -38,7 +38,7 @@ const Promotion = () => {
           phụ kiện khi mua sắm tại
         </div>
         <div className="promotion-text">
-          LaptopAZ từ ngày 01/10/2023 đến hết ngày 10/10/2023
+          LaptopUTC từ ngày 01/10/2023 đến hết ngày 10/10/2023
         </div>
         <div className="promotion-image">
           <img src={img1} alt="" />
@@ -47,7 +47,7 @@ const Promotion = () => {
 
       <div className="promotion-details">
         <div className="promotion-text">
-          MUA LIỀN TAY NHẬN NGAY TIỀN MẶT TẠI LAPTOPAZ!
+          MUA LIỀN TAY NHẬN NGAY TIỀN MẶT TẠI LAPTOPUTC!
         </div>
 
         <div className="promotion-text">
@@ -83,7 +83,7 @@ const Promotion = () => {
             🎯 Áp dụng toàn bộ khách hàng, kể cả TRẢ GÓP
           </div>
           <div className="promotion-text-item">
-            🎯 Áp dụng cho các sản phẩm nhập trực tiếp từ LaptopAZ
+            🎯 Áp dụng cho các sản phẩm nhập trực tiếp từ LaptopUTC
           </div>
           <div className="promotion-text-item">
             ⛔ Không áp dụng cùng những chương trình khuyến mại khác
@@ -110,7 +110,7 @@ const Promotion = () => {
         <div className="promotion-text-item">
           ✅ Miễn phí cân màu màn hình công nghệ cao
         </div>
-        <div className="promotion-text-item">✅ Balo thời trang AZ</div>
+        <div className="promotion-text-item">✅ Balo thời trang UTC</div>
         <div className="promotion-text-item">
           ✅ Chuột không dây + Bàn di chuột cao cấp
         </div>
