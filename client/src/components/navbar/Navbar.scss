@@ -1,7 +1,5 @@
 .navbar {
-  margin: auto;
-  height: 80px;
-  width: 1200px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
 
@@ -30,7 +28,8 @@
         border: none;
         outline: none;
         width: 100%;
-        padding-left: 10px;
+        padding-left: 16px;
+        font-size: 16px;
       }
 
       .icon-search {
@@ -38,8 +37,8 @@
         color: white;
         background-color: #426eff;
         object-fit: contain;
-        width: 36px;
-        height: 30px;
+        width: 40px;
+        height: 36px;
       }
     }
   }

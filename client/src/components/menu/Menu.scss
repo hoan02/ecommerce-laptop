@@ -5,7 +5,7 @@
     .items {
       display: flex;
       margin: 0 auto;
-      width: 1200px;
+      width: 1080px;
       height: 40px;
       justify-content: center;
       padding: 5px 0;
@@ -23,18 +23,20 @@
 
   .sub-menu {
     // margin: 0 auto;
-    width: 1200px;
+    width: 1080px;
     position: absolute;
-    left: calc((100% - 1200px) / 2);
+    left: calc((100% - 1080px) / 2);
     z-index: 999;
     background-color: white;
-    border: 1px solid #8bc3ff;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #2b80dd;
     padding: 10px;
 
     .all-brand-name {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 10px;
+      grid-gap: 20px;
 
       .brand-name {
         p {
@@ -53,6 +55,7 @@
 
           ul {
             width: 50%;
+            margin-top: 10px;
             margin-left: 10px;
           }
 
