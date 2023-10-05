@@ -1,31 +1,60 @@
 .footer {
-  padding: 20px 0;
-  display: flex;
-  gap: 10px;
 
-  .col {
-    width: 25%;
+  .icons-container {
+    margin: 10px 0;
+    height: 64px;
+    display: flex;
+    gap: 10px;
 
-    p:first-child {
-      font-size: 13px;
-      font-weight: bold;
-    }
+    .item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background-color: white;
 
-    p:not(:first-child) {
-      font-size: 13px;
-      margin-top: 5px;
-      cursor: pointer;
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        margin: 12px;
+      }
 
-      &:hover{
-        color: #5a62f8;
+      p {
+        color: green;
+        font-size: 14px;
+        font-weight: bold;
       }
     }
+  }
 
-    img {
-      margin: 5px;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
+  .text {
+    padding: 20px 0;
+    display: flex;
+    gap: 10px;
+    .col {
+      width: 25%;
+
+      p:first-child {
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      p:not(:first-child) {
+        font-size: 13px;
+        margin-top: 5px;
+        cursor: pointer;
+
+        &:hover {
+          color: #5a62f8;
+        }
+      }
+
+      img {
+        margin: 5px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
     }
   }
 }
