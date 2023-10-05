@@ -1,0 +1,31 @@
+.footer {
+  padding: 20px 0;
+  display: flex;
+  gap: 10px;
+
+  .col {
+    width: 25%;
+
+    p:first-child {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    p:not(:first-child) {
+      font-size: 13px;
+      margin-top: 5px;
+      cursor: pointer;
+
+      &:hover{
+        color: #5a62f8;
+      }
+    }
+
+    img {
+      margin: 5px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+}

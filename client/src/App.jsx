@@ -19,7 +19,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
-      <Footer />
+      <Footer className="footer"/>
     </QueryClientProvider>
   </div>
 );
