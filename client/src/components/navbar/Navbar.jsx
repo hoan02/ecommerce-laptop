@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo-store.png";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CallIcon from "@mui/icons-material/Call";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
 
 const Navbar = () => {
   return (
@@ -18,6 +19,10 @@ const Navbar = () => {
       </div>
       <div className="links">
         <div className="items">
+          <div className="item">
+            <PendingActionsIcon />
+            <span>Tra cứu bảo hành</span>
+          </div>
           <div className="item">
             <CallIcon />
             <span>0123456789</span>

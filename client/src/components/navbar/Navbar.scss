@@ -3,6 +3,7 @@
   height: 80px;
   width: 1200px;
   display: flex;
+  justify-content: space-between;
 
   .logo {
     cursor: pointer;
@@ -16,7 +17,7 @@
   .search {
     display: flex;
     align-items: center;
-    width: 100%;
+    flex: 1;
     margin: 0 50px;
 
     .box-search {

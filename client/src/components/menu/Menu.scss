@@ -22,9 +22,52 @@
   }
 
   .sub-menu {
-    margin: 0 auto;
+    // margin: 0 auto;
     width: 1200px;
+    position: absolute;
+    left: calc((100% - 1200px) / 2);
+    z-index: 999;
+    background-color: white;
     border: 1px solid #8bc3ff;
     padding: 10px;
+
+    .all-brand-name {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+
+      .brand-name {
+        p {
+          padding: 4px 10px;
+          width: 160px;
+          background-color: #2b80dd;
+          border-radius: 0 0 10px 0;
+          color: white;
+          font-size: 20px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .brand-container {
+          display: flex;
+
+          ul {
+            width: 50%;
+            margin-left: 10px;
+          }
+
+          li {
+            list-style-type: none;
+            padding: 4px 0;
+            cursor: pointer;
+            width: max-content;
+
+            &:hover {
+              color: #046cdb;
+            }
+          }
+        }
+      }
+    }
   }
 }
