@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
 import Footer from "./components/footer/Footer";
+import Description from "./pages/description/Description";
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,10 @@ const App = () => (
       <div className="body">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/desc/" element={<Description />} />
         </Routes>
       </div>
-      <Footer className="footer"/>
+      <Footer className="footer" />
     </QueryClientProvider>
   </div>
 );

@@ -24,6 +24,7 @@ const Banner = () => {
         slidesPerView={1}
         pagination={true}
         autoplay={true}
+        loop={true}
         modules={[Pagination, Autoplay]}
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}

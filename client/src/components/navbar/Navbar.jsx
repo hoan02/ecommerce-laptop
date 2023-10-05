@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import "./Navbar.scss";
 import logo from "../../assets/images/logo-store.png";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,7 +11,9 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="logo">
-        <img className="img-logo" src={logo} alt="logo" />
+        <NavLink to="/">
+          <img className="img-logo" src={logo} alt="logo" />
+        </NavLink>
       </div>
       <div className="search">
         <div className="box-search">
