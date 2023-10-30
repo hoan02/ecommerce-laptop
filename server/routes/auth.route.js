@@ -1,15 +1,10 @@
 import express from "express";
-import {
-  getAccount,
-  updateAccount,
-  deleteAccount,
-} from "../controllers/account.controller.js";
-import { verifyToken } from "../middlewares/jwt.js";
+import { register, login, logout } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.get("/:id", verifyToken, getAccount);
-router.put("/update/:id", verifyToken, updateAccount);
-router.delete("/delete/:id", verifyToken, deleteAccount);
+router.post("/register", register);
+router.post("/login", login);
+router.post("/logout", logout);
 
 export default router;

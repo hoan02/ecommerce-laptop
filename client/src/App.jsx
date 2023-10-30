@@ -21,7 +21,7 @@ const App = () => (
       <div className="body">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/desc" element={<Description />} />
+          <Route path="/desc/:id" element={<Description />} />
           <Route path="/khuyen-mai" element={<Promotion />} />
           <Route path="/bao-hanh-hau-mai" element={<Warranty />} />
           <Route path="/tra-gop" element={<Installment />} />

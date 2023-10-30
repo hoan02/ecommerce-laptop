@@ -17,12 +17,12 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
 
-          <Route
+          {/* <Route
             path="/my-account"
             element={
               <RequireAuth loginPath="/login">{<MyAccount />}</RequireAuth>
             }
-          />
+          /> */}
         </Routes>
       </div>
       <ToastContainer autoClose={2000} draggablePercent={60} />

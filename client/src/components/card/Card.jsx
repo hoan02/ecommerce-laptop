@@ -1,11 +1,15 @@
 import "./Card.scss";
 import imglaptop from "../../assets/images/laptop/lenovo-legion-5.jpg";
+import { NavLink } from "react-router-dom";
 
 const Card = () => {
   return (
     <div className="card">
-      <img className="img" src={imglaptop} alt="" />
-      <p className="title">Lenovo Legion 5</p>
+      <NavLink className="link" to="/desc/123">
+        <img className="img" src={imglaptop} alt="" />
+        <p className="title">Lenovo Legion 5</p>
+      </NavLink>
+
       <div className="desc">
         <div className="row">
           <p className="name">CPU</p>
