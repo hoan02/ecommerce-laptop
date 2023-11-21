@@ -5,11 +5,12 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   console.log(req.body);
+  const password = req.body.password;
   try {
-    const hash = bcrypt.hashSync(req.body.password, 5);
+    const hashPassword = bcrypt.hashSync(password, 5);
     const newAccount = new Account({
       ...req.body,
-      password: hash,
+      password: hashPassword,
     });
 
     await newAccount.save();

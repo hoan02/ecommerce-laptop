@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const memorySchema = new Schema(
+const itemSchema = new Schema(
   {
-    nameMemory: {
+    name: {
+      type: String,
+      required: true,
+    },
+    slug: {
       type: String,
       required: true,
     },
@@ -13,4 +17,4 @@ const memorySchema = new Schema(
   }
 );
 
-export default mongoose.model("Memory", memorySchema);
+export default mongoose.model("Item", itemSchema);

@@ -3,18 +3,16 @@ import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
+import * as dotenv from "dotenv";
 
 import accountRoute from "./routes/account.route.js";
 import authRoute from "./routes/auth.route.js";
 import imageRoute from "./routes/image.route.js";
-import cardRoute from "./routes/card.route.js";
-import brandRoute from "./routes/brand.route.js";
-import chipRoute from "./routes/chip.route.js";
-import memoryRoute from "./routes/memory.route.js";
+import itemRoute from "./routes/item.route.js";
 import productRoute from "./routes/product.route.js";
-import productDetailRoute from "./routes/productDetail.route.js";
 
 const app = express();
+dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUND_NAME,
@@ -49,7 +47,8 @@ app.use(cookieParser());
 app.use("/api/v1/account", accountRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/image", imageRoute);
-app.use("/api/v1/image", imageRoute);
+app.use("/api/v1/item", itemRoute);
+app.use("/api/v1/product", productRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

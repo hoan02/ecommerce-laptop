@@ -10,9 +10,9 @@ const productSchema = new Schema(
     productDetail: {
       type: Schema.Types.ObjectId,
       ref: "ProductDetail",
-      required: true,
+      required: false,
     },
-    imageFeatured: {
+    imageFeaturedUrl: {
       type: Schema.Types.ObjectId,
       ref: "Image",
       required: true,
