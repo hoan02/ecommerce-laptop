@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
@@ -25,7 +26,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChipIcon from "@mui/icons-material/Memory";
 import RamIcon from "@mui/icons-material/Storage";
-import MemoryIcon from "@mui/icons-material/SdCard";
+import CapacityIcon from "@mui/icons-material/SdCard";
 import CardIcon from "@mui/icons-material/QueuePlayNext";
 import BrandIcon from "@mui/icons-material/FeaturedPlayList";
 import ProductIcon from "@mui/icons-material/LaptopMac";
@@ -37,6 +38,8 @@ import Products from "../../pages/Products";
 import Login from "../../pages/Login";
 import MyAccount from "../../pages/MyAccount";
 import toastService from "../../utils/toastService";
+import NewProduct from "../product/NewProduct";
+import UpdateProduct from "../product/UpdateProduct";
 
 const drawerWidth = 240;
 
@@ -121,24 +124,24 @@ const Sidebar = () => {
 
   const menuProducts = [
     {
-      name: "Product",
+      name: "Sản phẩm",
       slug: "board",
       icon: <ProductIcon />,
     },
   ];
   const menuItems = [
     {
-      name: "Brand",
+      name: "Thương hiệu",
       slug: "brand",
       icon: <BrandIcon />,
     },
     {
-      name: "Chip",
+      name: "CPU",
       slug: "chip",
       icon: <ChipIcon />,
     },
     {
-      name: "Card",
+      name: "Card màn hình",
       slug: "card",
       icon: <CardIcon />,
     },
@@ -148,9 +151,9 @@ const Sidebar = () => {
       icon: <RamIcon />,
     },
     {
-      name: "Memory",
-      slug: "memory",
-      icon: <MemoryIcon />,
+      name: "Ổ cứng",
+      slug: "capacity",
+      icon: <CapacityIcon />,
     },
   ];
 
@@ -272,7 +275,7 @@ const Sidebar = () => {
               justifyContent: open ? "initial" : "center",
               px: 2.5,
             }}
-            onClick={handleLogout()}
+            onClick={() => handleLogout()}
           >
             <ListItemIcon
               sx={{
@@ -283,7 +286,7 @@ const Sidebar = () => {
             >
               <LogoutIcon />
             </ListItemIcon>
-            <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
+            <ListItemText primary="Đăng xuất" sx={{ opacity: open ? 1 : 0 }} />
           </ListItemButton>
         </ListItem>
       </Drawer>
@@ -303,6 +306,18 @@ const Sidebar = () => {
             path="/products/:slug"
             element={
               <RequireAuth loginPath="/login">{<Products />}</RequireAuth>
+            }
+          />
+          <Route
+            path="/products/create"
+            element={
+              <RequireAuth loginPath="/login">{<NewProduct />}</RequireAuth>
+            }
+          />
+          <Route
+            path="/products/update/:id"
+            element={
+              <RequireAuth loginPath="/login">{<UpdateProduct />}</RequireAuth>
             }
           />
           <Route

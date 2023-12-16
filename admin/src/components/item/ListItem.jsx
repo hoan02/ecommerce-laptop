@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Button, LinearProgress } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
@@ -11,6 +11,7 @@ const ListItem = () => {
   const slug = useParams().slug || "";
   const queryClient = useQueryClient();
   const [list, setList] = useState([]);
+  const isBrandSlug = slug === "brand";
 
   const columns = [
     {
@@ -21,7 +22,7 @@ const ListItem = () => {
     {
       field: "name",
       headerName: "Name",
-      width: 700,
+      width: 650,
     },
     {
       field: "id",
@@ -47,6 +48,14 @@ const ListItem = () => {
     },
   ];
 
+  if (isBrandSlug) {
+    columns.splice(2, 0, {
+      field: "brand",
+      headerName: "Brand",
+      width: 200,
+    });
+  }
+
   // GET: Get item by slug
   const { isLoading, error } = useQuery({
     queryKey: [`${slug}`],
@@ -56,6 +65,7 @@ const ListItem = () => {
         id: item._id,
         stt: index + 1,
         name: item.name,
+        brand: isBrandSlug ? item.parent : null,
       }));
       setList(data);
     },

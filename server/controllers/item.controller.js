@@ -2,11 +2,8 @@ import Item from "../models/item.model.js";
 import createError from "../utils/createError.js";
 
 export const getAllItem = async (req, res, next) => {
-  const slug = req.query.slug;
   try {
-    const allItem = await Item.find({
-      slug,
-    });
+    const allItem = await Item.find({});
     if (!allItem) return next(createError(404, "Không tìm thấy bản ghi nào!"));
     res.status(200).send(allItem);
   } catch (err) {
@@ -14,10 +11,24 @@ export const getAllItem = async (req, res, next) => {
   }
 };
 
+export const getItemBySlug = async (req, res, next) => {
+  const slug = req.query.slug;
+  try {
+    const items = await Item.find({
+      slug,
+    });
+    if (!items) return next(createError(404, "Không tìm thấy bản ghi nào!"));
+    res.status(200).send(items);
+  } catch (err) {
+    next(createError(500, "Lấy danh sách thất bại!"));
+  }
+};
+
 export const createItem = async (req, res, next) => {
-  const { name, slug } = req.body;
+  const { parent, name, slug } = req.body;
   try {
     const newItem = await Item.create({
+      parent,
       name,
       slug,
     });

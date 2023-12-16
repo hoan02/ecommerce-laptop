@@ -1,20 +1,64 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import LaptopMacIcon from "@mui/icons-material/LaptopMac";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import ConstructionIcon from "@mui/icons-material/Construction";
 
+import newRequest from "../../utils/newRequest.js";
+import toastService from "../../utils/toastService.js";
+
 import "./Menu.scss";
 
 const Menu = () => {
   const [isHovered, setHovered] = useState(false);
+  const [dataMenu, setDataMenu] = useState([]);
   const handleMouseEnter = () => {
     setHovered(true);
   };
 
   const handleMouseLeave = () => {
     setHovered(false);
+  };
+
+  // GET: Get item by slug
+  const { isLoading, error } = useQuery({
+    queryFn: () => newRequest.get(`item/all?slug=brand`),
+    onSuccess: (res) => {
+      setDataMenu(res.data);
+    },
+  });
+
+  const renderBrandContainer = (brandName) => {
+    const models = dataMenu
+      .filter((item) => item.parent === brandName)
+      .map((item) => <li key={item._id}>{item.name}</li>);
+  
+    // Tính toán số lượng models trong mỗi cột
+    const halfLength = Math.ceil(models.length / 2);
+    const firstColumn = models.slice(0, halfLength);
+    const secondColumn = models.slice(halfLength);
+  
+    return (
+      <div className="brand-container">
+        <ul className="column">{firstColumn}</ul>
+        <ul className="column">{secondColumn}</ul>
+      </div>
+    );
+  };
+
+  const renderBrandNames = () => {
+    const uniqueBrandNames = Array.from(
+      new Set(dataMenu.map((item) => item.parent))
+    );
+
+    return uniqueBrandNames.map((brandName) => (
+      <div className="brand-name" key={brandName}>
+        <p>{brandName}</p>
+        {renderBrandContainer(brandName)}
+      </div>
+    ));
   };
 
   return (
@@ -53,98 +97,7 @@ const Menu = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="all-brand-name">
-            <div className="brand-name">
-              <p>Laptop Dell</p>
-              <div className="brand-container">
-                <ul>
-                  <li>Dell Alienware</li>
-                  <li>Dell Precision</li>
-                  <li>Dell XPS</li>
-                  <li>Dell Vostro</li>
-                </ul>
-                <ul>
-                  <li>Dell Inspiron</li>
-                  <li>Dell Latitude</li>
-                  <li>Dell G-Seri</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="brand-name">
-              <p>Laptop HP</p>
-              <div className="brand-container">
-                <ul>
-                  <li>HP Elitebook</li>
-                  <li>HP Spectre</li>
-                  <li>HP Pavilion</li>
-                  <li>HP Probook</li>
-                </ul>
-                <ul>
-                  <li>HP Omen</li>
-                  <li>HP Envy</li>
-                  <li>HP Zbook</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="brand-name">
-              <p>Laptop Acer</p>
-              <div className="brand-container">
-                <ul>
-                  <li>Acer Aspire</li>
-                  <li>Acer Nitro</li>
-                  <li>Acer Spin</li>
-                </ul>
-                <ul>
-                  <li>Acer Predator</li>
-                  <li>Acer Swift</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="brand-name">
-              <p>Laptop Lenovo</p>
-              <div className="brand-container">
-                <ul>
-                  <li>Lenovo Ideapad</li>
-                  <li>Lenovo ThinkBook</li>
-                  <li>Lenovo Yoga</li>
-                </ul>
-                <ul>
-                  <li>Lenovo Legion</li>
-                  <li>Lenovo Thinkpad</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="brand-name">
-              <p>Laptop Asus</p>
-              <div className="brand-container">
-                <ul>
-                  <li>Asus TUF</li>
-                  <li>Asus Zenbook</li>
-                </ul>
-                <ul>
-                  <li>Asus VivoBook</li>
-                  <li>Asus ROG</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="brand-name">
-              <p>Laptop MSI</p>
-              <div className="brand-container">
-                <ul>
-                  <li>MSI G-Seri</li>
-                  <li>MSI Bravo</li>
-                </ul>
-                <ul>
-                  <li>MSI Modern</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div className="all-brand-name">{renderBrandNames()}</div>
         </div>
       )}
     </div>

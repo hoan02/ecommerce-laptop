@@ -46,11 +46,15 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    memory: {
+    capacity: {
       type: String,
       required: true,
     },
     card: {
+      type: String,
+      required: true,
+    },
+    screen: {
       type: String,
       required: true,
     },

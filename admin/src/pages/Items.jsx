@@ -1,4 +1,3 @@
-import React from "react";
 import ListItem from "../components/item/ListItem";
 import NewItem from "../components/item/NewItem";
 

@@ -26,7 +26,7 @@ export const createProduct = async (req, res, next) => {
     brand: data.brand,
     chip: data.chip,
     ram: data.ram,
-    memory: data.memory,
+    capacity: data.capacity,
     card: data.card,
   };
 
