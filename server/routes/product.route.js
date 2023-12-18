@@ -8,8 +8,8 @@ import { verifyToken } from "../middlewares/jwt.js";
 
 const router = express.Router();
 
-router.get("/all", getAllProduct);
+router.get("/", getAllProduct);
 router.post("/create", createProduct);
-router.put("/delete/:id", deleteProduct);
+router.delete("/delete/:id", deleteProduct);
 
 export default router;

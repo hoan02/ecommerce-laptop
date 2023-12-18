@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema(
   {
+    title: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -12,7 +16,7 @@ const productSchema = new Schema(
       ref: "ProductDetail",
       required: false,
     },
-    imageFeaturedUrl: {
+    imageFeatured: {
       type: Schema.Types.ObjectId,
       ref: "Image",
       required: true,
@@ -25,14 +29,17 @@ const productSchema = new Schema(
     purchasePrice: {
       type: Number,
       required: true,
+      default: 0,
     },
     retailPrice: {
       type: Number,
       required: true,
+      default: 0,
     },
     actualPrice: {
       type: Number,
       required: true,
+      default: 0,
     },
     brand: {
       type: String,

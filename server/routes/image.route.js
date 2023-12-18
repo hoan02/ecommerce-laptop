@@ -9,7 +9,7 @@ import { verifyToken } from "../middlewares/jwt.js";
 const router = express.Router();
 
 router.get("/", getImage);
-router.post("/create", verifyToken, createImage);
-router.put("/update/:id", verifyToken, updateImage);
+router.post("/create", createImage);
+router.put("/update/:id", updateImage);
 
 export default router;
