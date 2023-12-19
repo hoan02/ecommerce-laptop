@@ -13,9 +13,9 @@ export const getAllProduct = async (req, res, next) => {
 
 export const getProductById = async (req, res, next) => {
   try {
-    const productId = req.productId;
-    const Product = await Product.findById(productId).populate("imageFeatured");
-    res.status(200).send(Product);
+    const productId = req.params.id;
+    const product = await Product.findById(productId).populate("imageFeatured");
+    res.status(200).send(product);
   } catch (error) {
     next(createError(500, "Tìm kiếm sản phẩm không thành công!"));
   }
@@ -39,7 +39,6 @@ export const createProduct = async (req, res, next) => {
     card: data.card,
     screen: data.screen,
   };
-  console.log(newProduct);
 
   try {
     await Product.create(newProduct);
@@ -53,9 +52,58 @@ export const createProduct = async (req, res, next) => {
   }
 };
 
+export const updateProduct = async (req, res, next) => {
+  const productId = req.params.id;
+  const updatedProductData = req.body;
+
+  try {
+    // Kiểm tra xem sản phẩm cần cập nhật có tồn tại hay không
+    const existingProduct = await Product.findById(productId);
+
+    if (!existingProduct) {
+      return res.status(404).json({
+        success: false,
+        message: "Sản phẩm không tồn tại",
+      });
+    }
+
+    // Cập nhật thông tin sản phẩm
+    existingProduct.title = updatedProductData.title || existingProduct.title;
+    existingProduct.name = updatedProductData.name || existingProduct.name;
+    existingProduct.imageFeatured =
+      updatedProductData.imageFeatured || existingProduct.imageFeatured;
+    existingProduct.quantity =
+      updatedProductData.quantity || existingProduct.quantity;
+    existingProduct.purchasePrice =
+      updatedProductData.purchasePrice || existingProduct.purchasePrice;
+    existingProduct.retailPrice =
+      updatedProductData.retailPrice || existingProduct.retailPrice;
+    existingProduct.actualPrice =
+      updatedProductData.actualPrice || existingProduct.actualPrice;
+    existingProduct.brand = updatedProductData.brand || existingProduct.brand;
+    existingProduct.chip = updatedProductData.chip || existingProduct.chip;
+    existingProduct.ram = updatedProductData.ram || existingProduct.ram;
+    existingProduct.capacity =
+      updatedProductData.capacity || existingProduct.capacity;
+    existingProduct.card = updatedProductData.card || existingProduct.card;
+    existingProduct.screen =
+      updatedProductData.screen || existingProduct.screen;
+
+    // Lưu lại sản phẩm sau khi cập nhật
+    await existingProduct.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Cập nhật sản phẩm thành công",
+      product: existingProduct,
+    });
+  } catch (error) {
+    next(createError(500, "Cập nhật sản phẩm thất bại"));
+  }
+};
+
 export const deleteProduct = async (req, res, next) => {
   const productId = req.params.id;
-  console.log(productId);
   try {
     await Product.findByIdAndDelete(productId);
     res.status(201).json({

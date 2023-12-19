@@ -12,7 +12,6 @@ import {
   TextField,
 } from "@mui/material";
 
-import noImg from "../../assets/images/no-img.jpg";
 import newRequest from "../../utils/newRequest";
 import toastService from "../../utils/toastService";
 
@@ -285,7 +284,7 @@ const NewProduct = () => {
                 </Grid>
               </Grid>
               Image featured:
-              <Box fullWidth>
+              <Box fullWidth sx={{ mb: 3 }}>
                 {formData.imageFeatured && (
                   <img
                     src={formData.imageFeatured.url}
@@ -303,8 +302,16 @@ const NewProduct = () => {
                   onChange={handleImageChange}
                 />
               </Box>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="success">
                 Gửi
+              </Button>
+              <Button
+                sx={{ ml: 3 }}
+                variant="contained"
+                color="primary"
+                onClick={() => navigate(`/products/broad`)}
+              >
+                Thoát
               </Button>
             </form>
           </div>

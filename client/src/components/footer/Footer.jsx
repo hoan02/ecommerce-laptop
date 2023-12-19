@@ -40,7 +40,7 @@ const Footer = () => {
           <p>CÔNG TY TNHH TIN HỌC CÔNG NGHỆ UTC</p>
           <p>Địa chỉ: Số 3 phố Cầu Giấy, P.Láng Thượng, Q.Đống Đa, Hà Nội</p>
           <p>Hotline: 0123456789</p>
-          <p>Email: hotrolaptoputc@gmail.com</p>
+          <p>Email: laptoputc@gmail.com</p>
         </div>
         <div className="col">
           <p>THÔNG TIN CÔNG TY</p>

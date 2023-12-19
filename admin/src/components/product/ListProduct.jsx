@@ -28,9 +28,9 @@ const ListProduct = () => {
             src={params.value}
             alt=""
             style={{
-              width: "120px",
+              width: "140px",
               height: "120px",
-              objectFit: "cover",
+              objectFit: "fill",
             }}
           />
         </a>
@@ -39,7 +39,7 @@ const ListProduct = () => {
     {
       field: "title",
       headerName: "Title product name",
-      width: 900,
+      width: 700,
     },
     {
       field: "Update",
@@ -119,6 +119,7 @@ const ListProduct = () => {
             density="comfortable"
             getRowId={(row) => row.stt}
             rows={list}
+            rowHeight={100}
             columns={columns}
             components={{ Toolbar: GridToolbar }}
           />

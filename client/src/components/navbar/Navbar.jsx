@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import "./Navbar.scss";
 import logo from "../../assets/images/logo-store.png";
@@ -8,6 +9,15 @@ import CallIcon from "@mui/icons-material/Call";
 import PendingActionsIcon from "@mui/icons-material/PendingActions";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Chuyển hướng đến trang tìm kiếm với tham số query là giá trị nhập liệu
+    navigate(`/search?query=${searchTerm}`);
+  };
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -17,8 +27,13 @@ const Navbar = () => {
       </div>
       <div className="search">
         <div className="box-search">
-          <input type="text" placeholder="Bạn muốn tìm sản phẩm gì?" />
-          <SearchIcon className="icon-search" />
+          <input
+            type="text"
+            placeholder="Bạn muốn tìm sản phẩm gì?"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <SearchIcon className="icon-search" onClick={handleSearch} />
         </div>
       </div>
       <div className="links">

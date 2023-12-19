@@ -1,16 +1,16 @@
 import "./Card.scss";
-import imglaptop from "../../assets/images/laptop/lenovo-legion-5.jpg";
 import { NavLink } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ data }) => {
+  // console.log(data);
   return (
     <div className="card">
-      <NavLink className="link" to="/desc/123">
-        <img className="img" src={imglaptop} alt="" />
-        <p className="title">Lenovo Legion 5</p>
+      <NavLink className="link" to={`/desc/${data._id}`}>
+        <img className="img" src={data.imageFeatured.url} alt="" />
+        <p className="title">{data.title}</p>
       </NavLink>
 
-      <div className="desc">
+      {/* <div className="desc">
         <div className="row">
           <p className="name">CPU</p>
           <p className="value">i5 - 12500H</p>
@@ -31,11 +31,15 @@ const Card = () => {
           <p className="name">Màn hình</p>
           <p className="value">{`15.6" Full HD 144Hz`}</p>
         </div>
-      </div>
+      </div> */}
 
       <div className="price">
-        <p className="discounted-price">18.000.000</p>
-        <p className="original-price">20.000.000</p>
+        <p className="discounted-price">
+          {data.actualPrice.toLocaleString("vi-VN")}
+        </p>
+        <p className="original-price">
+          {data.retailPrice.toLocaleString("vi-VN")}
+        </p>
       </div>
     </div>
   );

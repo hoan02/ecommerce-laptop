@@ -21,10 +21,11 @@ const App = () => (
       <div className="body">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/desc/:id" element={<Description />} />
+          <Route path="/search" element={<Home />} />
           <Route path="/khuyen-mai" element={<Promotion />} />
           <Route path="/bao-hanh-hau-mai" element={<Warranty />} />
           <Route path="/tra-gop" element={<Installment />} />
+          <Route path="/desc/:id" element={<Description />} />
         </Routes>
       </div>
       <Footer className="footer" />
