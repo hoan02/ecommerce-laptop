@@ -13,7 +13,7 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [lengthCart, setLengthCart] = useState(0);
   useEffect(() => {
-    setLengthCart(JSON.parse(localStorage.getItem("cart")).length);
+    setLengthCart(JSON.parse(localStorage.getItem("cart") || "[]").length);
   });
 
   const handleSearch = (e) => {
