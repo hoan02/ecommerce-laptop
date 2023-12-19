@@ -12,6 +12,7 @@ import newRequest from "../../utils/newRequest";
 import "./Description.scss";
 
 const Description = () => {
+  const navigate = useNavigate();
   const idProduct = useParams().id;
   const [data, setData] = useState();
   // GET: Get product by id
@@ -22,7 +23,24 @@ const Description = () => {
       setData(res.data);
     },
   });
-  console.log(data);
+
+  const handleAddCart = () => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItem = storedCart.find((item) => item.id === data._id);
+
+    if (!existingItem) {
+      const newItem = {
+        id: data._id,
+        image: data.imageFeatured.url,
+        title: data.title,
+        price: data.actualPrice,
+        quantityBuy: 1,
+      };
+
+      localStorage.setItem("cart", JSON.stringify([...storedCart, newItem]));
+    }
+    navigate(`/cart`);
+  };
 
   return (
     <div className="description">
@@ -100,7 +118,7 @@ const Description = () => {
                 </div>
                 <div className="btn">
                   <div className="btn-buy">
-                    <button>Mua ngay</button>
+                    <button onClick={handleAddCart}>Mua ngay</button>
                   </div>
                   <div className="btn-installment">
                     <button>TRẢ GÓP QUA THẺ TÍN DỤNG</button>

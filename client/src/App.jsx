@@ -10,6 +10,7 @@ import Description from "./pages/description/Description";
 import Installment from "./pages/installment/Installment";
 import Warranty from "./pages/warranty/Warranty";
 import Promotion from "./pages/promotion/Promotion";
+import Cart from "./pages/cart/Cart";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/bao-hanh-hau-mai" element={<Warranty />} />
           <Route path="/tra-gop" element={<Installment />} />
           <Route path="/desc/:id" element={<Description />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
       <Footer className="footer" />

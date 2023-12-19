@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import "./Navbar.scss";
@@ -11,6 +11,10 @@ import PendingActionsIcon from "@mui/icons-material/PendingActions";
 const Navbar = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+  const [lengthCart, setLengthCart] = useState(0);
+  useEffect(() => {
+    setLengthCart(JSON.parse(localStorage.getItem("cart")).length);
+  });
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -46,9 +50,9 @@ const Navbar = () => {
             <CallIcon />
             <span>0123456789</span>
           </div>
-          <div className="item">
+          <div className="item" onClick={() => navigate(`/cart`)}>
             <ShoppingCartIcon />
-            <span>Cart</span>
+            <span>Cart ({lengthCart})</span>
           </div>
         </div>
       </div>
