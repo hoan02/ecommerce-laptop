@@ -42,6 +42,7 @@ const itemSchema = new Schema(
       type: String,
       enum: ["pending", "shiping", "done"],
       default: "pending",
+      require: false,
     },
   },
   {

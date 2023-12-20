@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import "./App.scss";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
@@ -31,6 +33,7 @@ const App = () => (
         </Routes>
       </div>
       <Footer className="footer" />
+      <ToastContainer autoClose={2000} draggablePercent={60} />
     </QueryClientProvider>
   </div>
 );

@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Box, Button, Input, Grid, TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
+import newRequest from "../../utils/newRequest";
+import toastService from "../../utils/toastService";
 import "./Cart.scss";
 
 const Cart = () => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart") || "[]")
   );
@@ -17,32 +23,34 @@ const Cart = () => {
       email: "",
     },
     note: "",
-    cart,
   });
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    setFormData({ ...formData, cart });
   }, [cart]);
 
-  const handleQuantityChange = (id, newQuantity) => {
-    // Chuyển đổi giá trị thành số
+  const handleQuantityChange = (productId, newQuantity) => {
     const quantityValue = parseInt(newQuantity, 10);
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id
+        item.product && item.product.id === productId
           ? {
               ...item,
-              quantityBuy: Math.max(1, Math.min(quantityValue, item.quantity)),
+              quantityBuy: Math.max(
+                1,
+                Math.min(quantityValue, item.product.quantity)
+              ),
             }
           : item
       )
     );
   };
 
-  const handleRemove = (id) => {
+  const handleRemove = (productId) => {
     setCart((prevCart) => {
-      const updatedCart = prevCart.filter((item) => item.id !== id);
+      const updatedCart = prevCart.filter(
+        (item) => item.product.id !== productId
+      );
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return updatedCart;
     });
@@ -50,7 +58,7 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return cart.reduce(
-      (total, item) => total + item.price * item.quantityBuy,
+      (total, item) => total + item.product.price * item.quantityBuy,
       0
     );
   };
@@ -92,15 +100,13 @@ const Cart = () => {
       field: "warrantyDuration",
       headerName: "Bảo hành",
       width: 100,
-      renderCell: (params) => <span>{params.value} tháng</span>,
+      renderCell: (params) => <span>{params.value}</span>,
     },
     {
       field: "price",
       headerName: "Giá",
       width: 120,
-      renderCell: (params) => (
-        <span>{new Intl.NumberFormat("vi-VN").format(params.value)} đ</span>
-      ),
+      renderCell: (params) => <span>{params.value}</span>,
     },
     {
       field: "quantityBuy",
@@ -118,14 +124,7 @@ const Cart = () => {
       field: "total",
       headerName: "Tổng",
       width: 150,
-      renderCell: (params) => (
-        <span className="total">
-          {new Intl.NumberFormat("vi-VN").format(
-            params.row.price * params.row.quantityBuy
-          )}{" "}
-          VND
-        </span>
-      ),
+      renderCell: (params) => <span>{params.value}</span>,
     },
     {
       field: "remove",
@@ -143,6 +142,23 @@ const Cart = () => {
     },
   ];
 
+  const rows = cart.map((item) => ({
+    id: item.product.id,
+    image: item.product.image,
+    title: item.product.title,
+    warrantyDuration: `${item.product.warranty.duration} tháng`,
+    price: new Intl.NumberFormat("vi-VN").format(item.product.price) + " đ",
+    quantityBuy: item.quantityBuy,
+    total: (
+      <span className="total">
+        {new Intl.NumberFormat("vi-VN").format(
+          item.product.price * item.quantityBuy
+        )}{" "}
+        VND
+      </span>
+    ),
+  }));
+
   const handleInputUserInfo = (field, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -153,8 +169,31 @@ const Cart = () => {
     }));
   };
 
+  // POST: Create new order
+  const createOrder = useMutation({
+    mutationFn: (formData) => {
+      return newRequest.post(`order/create`, formData);
+    },
+    onSuccess: (res) => {
+      toastService.success(res.data.message);
+      queryClient.invalidateQueries(["orders"]);
+      localStorage.removeItem("cart");
+      navigate(`/`);
+    },
+  });
+
   const handleSubmit = () => {
-    console.log(formData);
+    const formattedCart = cart.map((item) => ({
+      product: item.product.id,
+      quantityBuy: item.quantityBuy,
+    }));
+
+    const newData = {
+      ...formData,
+      cart: formattedCart,
+      status: "pending",
+    };
+    createOrder.mutate(newData);
   };
 
   return (
@@ -163,10 +202,10 @@ const Cart = () => {
         {cart && (
           <DataGrid
             density="comfortable"
-            getRowId={(row) => row.id}
-            rows={cart}
-            rowHeight={100}
+            rows={rows}
             columns={columns}
+            rowHeight={100}
+            pageSize={5}
           />
         )}
         <Box sx={{ ml: 90, p: 2 }}>

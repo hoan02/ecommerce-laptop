@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { LinearProgress } from "@mui/material";
+import { LinearProgress, duration } from "@mui/material";
 import img from "../../assets/images/laptop/lenovo-legion-5.jpg";
 import img1 from "../../assets/images/laptop/lenovo-legion-5-1.jpg";
 import img2 from "../../assets/images/laptop/lenovo-legion-5-2.jpg";
@@ -30,13 +30,17 @@ const Description = () => {
 
     if (!existingItem) {
       const newItem = {
-        id: data._id,
-        image: data.imageFeatured.url,
-        title: data.title,
-        price: data.actualPrice,
-        quantity: data.quantity,
+        product: {
+          id: data._id,
+          image: data.imageFeatured.url,
+          title: data.title,
+          price: data.actualPrice,
+          quantity: data.quantity,
+          warranty: {
+            duration: data.warranty.duration,
+          },
+        },
         quantityBuy: 1,
-        warrantyDuration: data.warranty.duration,
       };
 
       localStorage.setItem("cart", JSON.stringify([...storedCart, newItem]));
@@ -59,11 +63,11 @@ const Description = () => {
                 <div className="img-pre">
                   <img src={data.imageFeatured.url} alt="" />
                 </div>
-                <div className="img-sub">
+                {/* <div className="img-sub">
                   <img src={img1} alt="" />
                   <img src={img2} alt="" />
                   <img src={img3} alt="" />
-                </div>
+                </div> */}
               </div>
               <div className="desc">
                 <div className="price">
@@ -75,10 +79,13 @@ const Description = () => {
                   </div>
                 </div>
                 <p>
-                  <b>Bảo hành:</b> 12 tháng
+                  <b>Bảo hành:</b> {data.warranty.duration} tháng
                 </p>
                 <p>
-                  <b>Tình trạng:</b> Còn hàng ({data.quantity} sản phẩm)
+                  <b>Tình trạng:</b>{" "}
+                  {data.quantity == 0
+                    ? "Hết hàng"
+                    : `Còn hàng (${data.quantity} sản phẩm)`}
                 </p>
 
                 <b>Cấu hình chi tiết:</b>
@@ -118,9 +125,18 @@ const Description = () => {
                   <p>✅ Tặng gói cài đặt, bảo dưỡng, vệ sinh máy trọn đời</p>
                   <p>✅ Tặng Voucher giảm giá cho lần mua tiếp theo</p>
                 </div>
-                <div className="btn">
+                <div
+                  className={`btn ${
+                    data.quantity === 0 ? "non-clickable" : ""
+                  }`}
+                >
                   <div className="btn-buy">
-                    <button onClick={handleAddCart}>Mua ngay</button>
+                    <button
+                      onClick={handleAddCart}
+                      disabled={data.quantity === 0}
+                    >
+                      Mua ngay
+                    </button>
                   </div>
                   <div className="btn-installment">
                     <button>TRẢ GÓP QUA THẺ TÍN DỤNG</button>

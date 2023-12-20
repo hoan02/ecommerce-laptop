@@ -10,6 +10,7 @@ import authRoute from "./routes/auth.route.js";
 import imageRoute from "./routes/image.route.js";
 import itemRoute from "./routes/item.route.js";
 import productRoute from "./routes/product.route.js";
+import orderRoute from "./routes/order.route.js";
 
 const app = express();
 dotenv.config();
@@ -49,6 +50,7 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/image", imageRoute);
 app.use("/api/v1/item", itemRoute);
 app.use("/api/v1/product", productRoute);
+app.use("/api/v1/order", orderRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
