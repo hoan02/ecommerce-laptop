@@ -26,7 +26,6 @@ export const createProduct = async (req, res, next) => {
   const newProduct = {
     title: data.title,
     name: data.name,
-    // productDetail:
     imageFeatured: data.imageFeatured,
     quantity: data.quantity,
     purchasePrice: data.purchasePrice,
@@ -38,6 +37,9 @@ export const createProduct = async (req, res, next) => {
     capacity: data.capacity,
     card: data.card,
     screen: data.screen,
+    warranty: {
+      duration: data.warrantyDuration,
+    },
   };
 
   try {
@@ -89,7 +91,10 @@ export const updateProduct = async (req, res, next) => {
     existingProduct.screen =
       updatedProductData.screen || existingProduct.screen;
 
-    // Lưu lại sản phẩm sau khi cập nhật
+    existingProduct.warranty.duration =
+      updatedProductData.warranty.duration || existingProduct.warranty.duration;
+
+    console.log(existingProduct);
     await existingProduct.save();
 
     res.status(200).json({

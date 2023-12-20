@@ -34,7 +34,9 @@ const Description = () => {
         image: data.imageFeatured.url,
         title: data.title,
         price: data.actualPrice,
+        quantity: data.quantity,
         quantityBuy: 1,
+        warrantyDuration: data.warranty.duration,
       };
 
       localStorage.setItem("cart", JSON.stringify([...storedCart, newItem]));

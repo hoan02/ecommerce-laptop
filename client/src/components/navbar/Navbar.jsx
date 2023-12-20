@@ -20,6 +20,7 @@ const Navbar = () => {
     e.preventDefault();
     // Chuyển hướng đến trang tìm kiếm với tham số query là giá trị nhập liệu
     navigate(`/search?query=${searchTerm}`);
+    // setSearchTerm("");
   };
 
   return (

@@ -33,13 +33,17 @@ const Menu = () => {
   const renderBrandContainer = (brandName) => {
     const models = dataMenu
       .filter((item) => item.parent === brandName)
-      .map((item) => <li key={item._id}>{item.name}</li>);
-  
+      .map((item) => (
+        <li key={item._id}>
+          <NavLink className="link" to={`search?query=${item.name}`}>{item.name}</NavLink>
+        </li>
+      ));
+
     // Tính toán số lượng models trong mỗi cột
     const halfLength = Math.ceil(models.length / 2);
     const firstColumn = models.slice(0, halfLength);
     const secondColumn = models.slice(halfLength);
-  
+
     return (
       <div className="brand-container">
         <ul className="column">{firstColumn}</ul>

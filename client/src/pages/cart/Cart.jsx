@@ -5,7 +5,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import "./Cart.scss";
 
 const Cart = () => {
-  const [note, setNote] = useState("");
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart") || "[]")
   );
@@ -34,7 +33,7 @@ const Cart = () => {
         item.id === id
           ? {
               ...item,
-              quantityBuy: Math.max(1, quantityValue),
+              quantityBuy: Math.max(1, Math.min(quantityValue, item.quantity)),
             }
           : item
       )
@@ -84,15 +83,21 @@ const Cart = () => {
     {
       field: "title",
       headerName: "Tên sản phẩm",
-      width: 400,
+      width: 350,
       renderCell: (params) => (
         <div style={{ whiteSpace: "pre-line" }}>{params.value}</div>
       ),
     },
     {
+      field: "warrantyDuration",
+      headerName: "Bảo hành",
+      width: 100,
+      renderCell: (params) => <span>{params.value} tháng</span>,
+    },
+    {
       field: "price",
       headerName: "Giá",
-      width: 150,
+      width: 120,
       renderCell: (params) => (
         <span>{new Intl.NumberFormat("vi-VN").format(params.value)} đ</span>
       ),
@@ -125,7 +130,7 @@ const Cart = () => {
     {
       field: "remove",
       headerName: "",
-      width: 120,
+      width: 80,
       renderCell: (params) => (
         <Button
           variant="contained"

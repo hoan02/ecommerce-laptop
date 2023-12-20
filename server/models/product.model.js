@@ -11,9 +11,8 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    productDetail: {
-      type: Schema.Types.ObjectId,
-      ref: "ProductDetail",
+    deviceId: {
+      type: String,
       required: false,
     },
     imageFeatured: {
@@ -64,6 +63,25 @@ const productSchema = new Schema(
     screen: {
       type: String,
       required: true,
+    },
+    warranty: {
+      id: {
+        type: String,
+        required: false,
+      },
+      duration: {
+        type: Number,
+        default: 12,
+        required: true,
+      },
+      startDate: {
+        type: Date,
+        required: false,
+      },
+      endDate: {
+        type: Date,
+        required: false,
+      },
     },
   },
   {

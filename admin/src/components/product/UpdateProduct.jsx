@@ -35,6 +35,9 @@ const UpdateProduct = () => {
     purchasePrice: 0,
     retailPrice: 0,
     actualPrice: 0,
+    warranty: {
+      duration: 0,
+    },
   });
 
   const [items, setItems] = useState([]);
@@ -118,9 +121,9 @@ const UpdateProduct = () => {
 
   return (
     <Box sx={{ pt: 1 }}>
-      {isLoading ? (
+      {isLoading && isLoadingProduct ? (
         <LinearProgress />
-      ) : error ? (
+      ) : error && errorProduct ? (
         <div>Error</div>
       ) : (
         <Box>
@@ -172,6 +175,7 @@ const UpdateProduct = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, quantity: e.target.value })
                       }
+                      inputProps={{ min: 0 }}
                     />
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
@@ -186,6 +190,7 @@ const UpdateProduct = () => {
                           purchasePrice: e.target.value,
                         })
                       }
+                      inputProps={{ min: 0 }}
                     />
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
@@ -200,6 +205,7 @@ const UpdateProduct = () => {
                           retailPrice: e.target.value,
                         })
                       }
+                      inputProps={{ min: 0 }}
                     />
                   </FormControl>
                   <FormControl fullWidth sx={{ mb: 2 }}>
@@ -214,6 +220,7 @@ const UpdateProduct = () => {
                           actualPrice: e.target.value,
                         })
                       }
+                      inputProps={{ min: 0 }}
                     />
                   </FormControl>
                 </Grid>
@@ -288,6 +295,23 @@ const UpdateProduct = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, screen: e.target.value })
                       }
+                    />
+                  </FormControl>
+                  <FormControl fullWidth sx={{ mb: 2 }}>
+                    Thời gian bảo hành (tháng):
+                    <TextField
+                      type="number"
+                      fullWidth
+                      value={formData.warranty.duration}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          warranty: {
+                            duration: e.target.value,
+                          },
+                        })
+                      }
+                      inputProps={{ min: 0 }}
                     />
                   </FormControl>
                 </Grid>
