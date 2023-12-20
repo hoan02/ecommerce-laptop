@@ -20,7 +20,7 @@ const Navbar = () => {
     e.preventDefault();
     // Chuyển hướng đến trang tìm kiếm với tham số query là giá trị nhập liệu
     navigate(`/search?query=${searchTerm}`);
-    // setSearchTerm("");
+    setSearchTerm("");
   };
 
   return (
@@ -43,10 +43,10 @@ const Navbar = () => {
       </div>
       <div className="links">
         <div className="items">
-          <div className="item">
+          {/* <div className="item">
             <PendingActionsIcon />
             <span>Tra cứu bảo hành</span>
-          </div>
+          </div> */}
           <div className="item">
             <CallIcon />
             <span>0123456789</span>

@@ -31,12 +31,15 @@ import CardIcon from "@mui/icons-material/QueuePlayNext";
 import BrandIcon from "@mui/icons-material/FeaturedPlayList";
 import ProductIcon from "@mui/icons-material/LaptopMac";
 import LogoutIcon from "@mui/icons-material/Logout";
+import OrderIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 import Home from "../../pages/Home";
 import Items from "../../pages/Items";
 import Products from "../../pages/Products";
 import Login from "../../pages/Login";
 import MyAccount from "../../pages/MyAccount";
+import Orders from "../../pages/Orders";
+import OrderDetail from "../../pages/OrderDetail";
 import toastService from "../../utils/toastService";
 import NewProduct from "../product/NewProduct";
 import UpdateProduct from "../product/UpdateProduct";
@@ -268,6 +271,31 @@ const Sidebar = () => {
           ))}
         </List>
         <Divider />
+        <List>
+          <ListItem disablePadding sx={{ display: "block" }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+              onClick={() => navigate(`orders`)}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <OrderIcon />
+              </ListItemIcon>
+              <ListItemText primary="Đơn hàng" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <Divider />
+
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
             sx={{
@@ -318,6 +346,16 @@ const Sidebar = () => {
             path="/products/update/:id"
             element={
               <RequireAuth loginPath="/login">{<UpdateProduct />}</RequireAuth>
+            }
+          />
+          <Route
+            path="/orders"
+            element={<RequireAuth loginPath="/login">{<Orders />}</RequireAuth>}
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <RequireAuth loginPath="/login">{<OrderDetail />}</RequireAuth>
             }
           />
           <Route

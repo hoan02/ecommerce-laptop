@@ -3,20 +3,26 @@ import createError from "../utils/createError.js";
 
 export const getAllOrder = async (req, res, next) => {
   try {
-    const allItem = await Order.find({});
-    if (!allItem) return next(createError(404, "Không tìm thấy bản ghi nào!"));
-    res.status(200).send(allItem);
+    const orders = await Order.find({}).populate("cart.product");
+    if (!orders) return next(createError(404, "Không tìm thấy bản ghi nào!"));
+    res.status(200).send(orders);
   } catch (err) {
     next(createError(500, "Lấy danh sách thất bại!"));
   }
 };
 
 export const getOrderById = async (req, res, next) => {
-  const { orderId } = req.body;
+  const orderId = req.params.id;
   try {
-    const allItem = await Order.findById(orderId);
-    if (!allItem) return next(createError(404, "Không tìm thấy bản ghi nào!"));
-    res.status(200).send(allItem);
+    const order = await Order.findById(orderId).populate({
+      path: "cart.product",
+      populate: {
+        path: "imageFeatured",
+        model: "Image",
+      },
+    });
+    if (!order) return next(createError(404, "Không tìm thấy bản ghi nào!"));
+    res.status(200).send(order);
   } catch (err) {
     next(createError(500, "Lấy danh sách thất bại!"));
   }
