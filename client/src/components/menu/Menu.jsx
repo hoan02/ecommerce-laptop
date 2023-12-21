@@ -35,7 +35,9 @@ const Menu = () => {
       .filter((item) => item.parent === brandName)
       .map((item) => (
         <li key={item._id}>
-          <NavLink className="link" to={`search?query=${item.name}`}>{item.name}</NavLink>
+          <NavLink className="link" to={`search?query=${item.name}`}>
+            {item.name}
+          </NavLink>
         </li>
       ));
 
@@ -59,7 +61,9 @@ const Menu = () => {
 
     return uniqueBrandNames.map((brandName) => (
       <div className="brand-name" key={brandName}>
-        <p>{brandName}</p>
+        <NavLink className="link" to={`search?query=${brandName.slice(7)}`}>
+          <p>{brandName}</p>
+        </NavLink>
         {renderBrandContainer(brandName)}
       </div>
     ));

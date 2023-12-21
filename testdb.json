@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Asus Vivobook 15 (i3-11500H, 8 GB, SSD 1TB, gtx 1080, 13' 60hz)",
+    "name": "15",
+    "imageFeatured": "6583dabcfe883c475f136ccb",
+    "quantity": "3",
+    "purchasePrice": "11000000",
+    "retailPrice": "15000000",
+    "actualPrice": "13490000",
+    "brand": "Asus Vivobook",
+    "chip": "i3-11500H",
+    "ram": "8 GB",
+    "capacity": "SSD 1TB",
+    "card": "gtx 1080",
+    "screen": "15.6' 60hz",
+    "warranty": {
+      "duration": "12"
+    }
+  },
+  {
+    "title": "MSI G-Seri GF63 (i3-11500H, 16 GB, SSD 256GB, rtx 3050, 13' 60hz)",
+    "name": "GF63",
+    "imageFeatured": "6583dab7fe883c475f136cc8",
+    "quantity": "5",
+    "purchasePrice": "12000000",
+    "retailPrice": "16490000",
+    "actualPrice": "14990000",
+    "brand": "MSI G-Seri",
+    "chip": "i3-11500H",
+    "ram": "16 GB",
+    "capacity": "SSD 256GB",
+    "card": "rtx 3050",
+    "screen": "14' 60hz",
+    "warranty": {
+      "duration": "12"
+    }
+  },
+  {
+    "title": "Dell SPX 13 Plus (i5-11400h, 64 GB, HDD 1TB, gtx 1080ti, 13' 60hz)",
+    "name": "13 Plus",
+    "imageFeatured": "6583dab1fe883c475f136cc5",
+    "quantity": "23",
+    "purchasePrice": "12500000",
+    "retailPrice": "16900000",
+    "actualPrice": "14400000",
+    "brand": "Dell SPX",
+    "chip": "i5-11400h",
+    "ram": "64 GB",
+    "capacity": "HDD 1TB",
+    "card": "gtx 1080ti",
+    "screen": "13' 60hz",
+    "warranty": {
+      "duration": "12"
+    }
+  },
+  {
+    "title": "HP Elitebook 630 G10 (i5-11400h, 16 GB, SSD 512GB, rtx 3060, 13' 60hz)",
+    "name": "630 G10",
+    "imageFeatured": "6583daacfe883c475f136cc2",
+    "quantity": "20",
+    "purchasePrice": "11000000",
+    "retailPrice": "14000000",
+    "actualPrice": "12500000",
+    "brand": "HP Elitebook",
+    "chip": "i5-11400h",
+    "ram": "16 GB",
+    "capacity": "SSD 512GB",
+    "card": "rtx 3060",
+    "screen": "15.6' 60hz",
+    "warranty": {
+      "duration": "12"
+    }
+  },
+  {
+    "title": "Acer Aspire 5 Gaming (i7-9900k, 32 GB, HDD 2TB, rxt 3050ti, 13' 60hz)",
+    "name": "5 Gaming",
+    "imageFeatured": "6583daa3fe883c475f136cbf",
+    "quantity": "15",
+    "purchasePrice": "18000000",
+    "retailPrice": "24000000",
+    "actualPrice": "20900000",
+    "brand": "Acer Aspire",
+    "chip": "i7-9900k",
+    "ram": "32 GB",
+    "capacity": "HDD 2TB",
+    "card": "rxt 3050ti",
+    "screen": "17' 120hz",
+    "warranty": {
+      "duration": "12"
+    }
+  }
+]

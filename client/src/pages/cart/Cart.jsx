@@ -180,6 +180,9 @@ const Cart = () => {
       localStorage.removeItem("cart");
       navigate(`/`);
     },
+    onError(err) {
+      toastService.error(err.response.data);
+    },
   });
 
   const handleSubmit = () => {
@@ -216,7 +219,7 @@ const Cart = () => {
       <Grid container spacing={2}>
         <Grid item xs={7}>
           <Box border={1} padding={2}>
-            1. Khách hàng khai báo thông tin
+            1. Khách hàng khai báo thông tin(*)
             <TextField
               label="Họ tên"
               fullWidth

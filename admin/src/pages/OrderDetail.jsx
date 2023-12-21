@@ -174,7 +174,7 @@ const OrderDetail = () => {
                   <Table>
                     <TableBody>
                       <TableRow>
-                        <TableCell>Order ID:</TableCell>
+                        <TableCell>Mã đơn hàng:</TableCell>
                         <TableCell>{dataOrder._id}</TableCell>
                       </TableRow>
                       <TableRow>
@@ -211,7 +211,7 @@ const OrderDetail = () => {
                     pageSize={5}
                   />
                 )}
-                <Box  mt={3}>
+                <Box mt={3}>
                   <h3>
                     Tổng tiền hóa đơn:{" "}
                     <b style={{ color: "red" }}>

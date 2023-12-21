@@ -30,6 +30,7 @@ export const getOrderById = async (req, res, next) => {
 
 export const createOrder = async (req, res, next) => {
   const data = req.body;
+  console.log(data);
   try {
     const newOrder = await Order.create(data);
     res.status(201).json({
@@ -38,6 +39,8 @@ export const createOrder = async (req, res, next) => {
       order: newOrder,
     });
   } catch (error) {
-    next(createError(500, "Tạo mới thất bại!"));
+    next(
+      createError(500, "Tạo đơn hàng thất bại! Hãy điền đủ thông tin mục 1")
+    );
   }
 };
